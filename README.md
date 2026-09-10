@@ -20,7 +20,7 @@ License
 
 📖 About the Project
 
-This project is part of the Spring Boot module of java10x. java10x is a service that manages a simple shopping cart, integrating data from an external API to provide available products. It uses an efficient architecture that combines caching (Redis), a NoSQL database (MongoDB), and containers (Docker), ensuring high performance and scalability.
+ a service that manages a simple shopping cart, integrating data from an external API to provide available products. It uses an efficient architecture that combines caching (Redis), a NoSQL database (MongoDB), and containers (Docker), ensuring high performance and scalability.
 
 Main Objectives:
 Provide a seamless user experience.
