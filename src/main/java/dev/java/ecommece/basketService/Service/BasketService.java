@@ -4,6 +4,8 @@ import dev.java.ecommece.basketService.Client.Response.PlatziProductResponse;
 import dev.java.ecommece.basketService.Entity.Basket;
 import dev.java.ecommece.basketService.Entity.Product;
 import dev.java.ecommece.basketService.Entity.Status;
+import dev.java.ecommece.basketService.Exceptions.BusinessException;
+import dev.java.ecommece.basketService.Exceptions.DataNotFoundException;
 import dev.java.ecommece.basketService.Repository.basketRepository;
 import dev.java.ecommece.basketService.Request.BasketRequest;
 import dev.java.ecommece.basketService.Request.PaymentRequest;
@@ -22,13 +24,13 @@ public class BasketService {
 
     public Basket getBasketById(String id){
         return basketRepository.getBasketById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Basket not found!"));
+                .orElseThrow(() -> new DataNotFoundException("Basket not found!"));
     }
 
     public Basket createBasket(BasketRequest basketRequest) {
 
         basketRepository.findByClientAndStatus(basketRequest.clientId(), Status.OPEN).ifPresent(basket -> {
-            throw new IllegalArgumentException("There is already an open basket for this client");
+            throw new BusinessException("There is already an open basket for this client");
         });
         List<Product> products = new ArrayList<>();
 
@@ -60,10 +62,17 @@ public class BasketService {
     public Basket updateBasket(String id, BasketRequest basketRequest) {
         Basket basket = getBasketById(id);
 
+        List<Product> products = getProducts(basketRequest, basket);
+        basket.setProducts(products);
+        basket.calculateTotalPrice();
+        return (Basket) basketRepository.save(basket);
+    }
+
+    private List<Product> getProducts(BasketRequest basketRequest, Basket basket) {
         List<Product> products = new ArrayList<>();
-        basketRequest.products().forEach(product -> {
+        basketRequest.products().stream().map(product -> {
             PlatziProductResponse platziProductResponse = productService.getProductById(Long.valueOf(basket.getId()));
-            products.add(
+                products.add(
                     Product.builder()
                             .id(platziProductResponse.id())
                             .title(platziProductResponse.title())
@@ -71,11 +80,11 @@ public class BasketService {
                             .quantity(product.quantity())
                             .build()
             );
+            return null;
         });
-        basket.setProducts(products);
-        basket.calculateTotalPrice();
-        return (Basket) basketRepository.save(basket);
+        return products;
     }
+
     public Basket payBasket(String id, PaymentRequest paymentRequest) {
         Basket basket = getBasketById(id);
         basket.setPaymentMethod(paymentRequest.paymentMethod());
