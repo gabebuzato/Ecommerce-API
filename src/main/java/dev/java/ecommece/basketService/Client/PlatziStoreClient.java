@@ -1,6 +1,7 @@
 package dev.java.ecommece.basketService.Client;
 
 import dev.java.ecommece.basketService.Client.Response.PlatziProductResponse;
+import dev.java.ecommece.basketService.Exceptions.CustomErrorDecoder;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

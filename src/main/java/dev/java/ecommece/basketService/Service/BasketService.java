@@ -55,7 +55,7 @@ public class BasketService {
 
         basket.calculateTotalPrice();
 
-        basketRepository.save(basketRequest);
+        basketRepository.save(basket);
         return basket;
     }
 

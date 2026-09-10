@@ -1,7 +1,7 @@
 package dev.java.ecommece.basketService.Controller;
 
+import dev.java.ecommece.basketService.Docs.BasketControllerDoc;
 import dev.java.ecommece.basketService.Entity.Basket;
-import dev.java.ecommece.basketService.Repository.basketRepository;
 import dev.java.ecommece.basketService.Request.BasketRequest;
 import dev.java.ecommece.basketService.Request.PaymentRequest;
 import dev.java.ecommece.basketService.Service.BasketService;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/basket")
-public class BasketController {
+public class BasketController implements BasketControllerDoc {
 
 private final BasketService basketService;
 
