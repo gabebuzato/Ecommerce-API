@@ -35,13 +35,11 @@ Java 17
 The latest version of the Java language, focused on performance and enhanced features.
 
 Learn more: Official Java documentation
-Course material: https://aluno.java10x.dev/187812-batismo-de-java
 Lombok
 
 Reduces code verbosity by automating the creation of getters, setters, and constructors.
 
 Learn more: Official Lombok documentation
-Course material: https://aluno.java10x.dev/187814-spring10x [Lesson 9]
 Redis
 
 An in-memory database used as a cache to improve performance in interactions with the API.
@@ -52,7 +50,6 @@ MongoDB
 A NoSQL database used to store shopping cart information in a flexible way.
 
 Learn more: Official MongoDB documentation
-Course materials: https://aluno.java10x.dev/187814-spring10x [Lesson 14]
 OpenFeign
 
 A library that simplifies integration with external APIs, making communication more intuitive and reducing code verbosity.
@@ -63,7 +60,6 @@ Docker
 A containerization tool for creating consistent and simplified environments for deployment.
 
 Learn more: Official Docker documentation
-Course Materials: https://aluno.java10x.dev/209723-docker
 External API
 
 Integration with an API that provides the list of products available for the shopping cart.
